@@ -5,17 +5,18 @@ class BaseQuestion:
     def __init__(self, data):
         self.data = data
 
-        i = 0
+        i = 1
         for q in data[12:]:
             if q == 0:
                 break
             i += 1
-        self.len = i+12+1
+        self.len = i+12
+
         self.q_name = data[12:self.len]
         (
             self.q_type,
             self.q_class
-        ) = struct.unpack('>HH', self.data[self.len:self.len + 5])
+        ) = struct.unpack('>HH', self.data[self.len:self.len + 4])
 
     def print_question(self):
         print('data[12:]:', self.data[12:])
