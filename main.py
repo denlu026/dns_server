@@ -12,15 +12,16 @@ def dns_server():
 
     header = BaseHeader(data)
     header.print_header()
+
     question = BaseQuestion(data)
     print(question.get_domain())
+
     answer = BaseAnswer()
     additional = BaseAdditional()
+    response = header.get_header() + question.get_question() + answer.get_answer() + additional.get_additional()
+    print(response)
 
-    reponses = header.get_header() + question.get_question() + answer.get_answer() + additional.get_additional()
-
-    print(reponses)
-    s.sendto(reponses, ad)
+    s.sendto(response, ad)
 
 
 while True:
