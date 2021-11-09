@@ -13,6 +13,7 @@ class BaseHeader:
             self.author,
             self.addition
         ) = struct.unpack('>HHHHHH', data[:12])
+        self.index = 12
 
     def print_header(self):
         tid = bin(self.tid + 65536)[3:]

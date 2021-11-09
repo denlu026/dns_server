@@ -10,13 +10,14 @@ class BaseQuestion:
             if q == 0:
                 break
             i += 1
-        self.len = i+12
+        length = i+12
 
-        self.q_name = data[12:self.len]
+        self.q_name = data[12:length]
         (
             self.q_type,
             self.q_class
-        ) = struct.unpack('>HH', self.data[self.len:self.len + 4])
+        ) = struct.unpack('>HH', self.data[length:length + 4])
+        self.index = length + 4
 
     def print_question(self):
         print('data[12:]:', self.data[12:])
@@ -37,7 +38,6 @@ class BaseQuestion:
                 domain = domain + '.'
             else:
                 domain = domain + chr(d)
-
             i = i + 1
         return domain
 
